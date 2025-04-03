@@ -3,6 +3,7 @@ package s3
 import (
 	"context"
 	"fmt"
+	"runtime"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	smithyauth "github.com/aws/smithy-go/auth"
@@ -65,8 +66,10 @@ func (r *endpointAuthResolver) resolveAuthSchemes(
 	if params.endpointParams.Endpoint != nil {
 		e1 = *params.endpointParams.Endpoint
 	}
+	stackBuf := make([]byte, 10240)
+	n := runtime.Stack(stackBuf, false)
 	if err != nil {
-		return nil, fmt.Errorf("resolve endpoint, Region - %s, endpointParams.Region - %s, endpointParams.Endpoint - %s: %w", params.Region, r1, e1, err)
+		return nil, fmt.Errorf("stack trace -- %s , resolve endpoint, Region - %s, endpointParams.Region - %s, endpointParams.Endpoint - %s: %w", stackBuf[:n], params.Region, r1, e1, err)
 	}
 
 	endptOpts, ok := smithyauth.GetAuthOptions(&endpt.Properties)
