@@ -4802,7 +4802,7 @@ func (r *resolver) ResolveEndpoint(
 							}
 							return endpoint, fmt.Errorf("Endpoint resolution failed. Invalid operation or environment input.")
 						}
-						return endpoint, fmt.Errorf("endpoint rule error, %s", "Invalid region: region was not a valid DNS name.")
+						return endpoint, fmt.Errorf("endpoint rule error, %s, %s", "Invalid region: region was not a valid DNS name.", _Region)
 					}
 					return endpoint, fmt.Errorf("Endpoint resolution failed. Invalid operation or environment input.")
 				}
@@ -4863,7 +4863,7 @@ func (r *resolver) ResolveEndpoint(
 														}(),
 													}, nil
 												}
-												return endpoint, fmt.Errorf("endpoint rule error, %s", "Invalid region: region was not a valid DNS name.")
+												return endpoint, fmt.Errorf("endpoint rule error, %s, %s", "Invalid region: region was not a valid DNS name.", _Region)
 											}
 											return endpoint, fmt.Errorf("Endpoint resolution failed. Invalid operation or environment input.")
 										}
@@ -6748,7 +6748,7 @@ func (r *resolver) ResolveEndpoint(
 							}(),
 						}, nil
 					}
-					return endpoint, fmt.Errorf("endpoint rule error, %s", "Invalid region: region was not a valid DNS name.")
+					return endpoint, fmt.Errorf("endpoint rule error, %s, %s", "Invalid region: region was not a valid DNS name.", _Region)
 				}
 				return endpoint, fmt.Errorf("Endpoint resolution failed. Invalid operation or environment input.")
 			}
@@ -7541,7 +7541,7 @@ func (r *resolver) ResolveEndpoint(
 					}
 					return endpoint, fmt.Errorf("Endpoint resolution failed. Invalid operation or environment input.")
 				}
-				return endpoint, fmt.Errorf("endpoint rule error, %s", "Invalid region: region was not a valid DNS name.")
+				return endpoint, fmt.Errorf("endpoint rule error, %s, %s", "Invalid region: region was not a valid DNS name.", _Region)
 			}
 			return endpoint, fmt.Errorf("Endpoint resolution failed. Invalid operation or environment input.")
 		}
