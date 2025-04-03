@@ -58,8 +58,15 @@ func (r *endpointAuthResolver) resolveAuthSchemes(
 	}
 
 	endpt, err := r.EndpointResolver.ResolveEndpoint(ctx, *params.endpointParams)
+	var r1, e1 = "nil", "nil"
+	if params.endpointParams.Region != nil {
+		r1 = *params.endpointParams.Region
+	}
+	if params.endpointParams.Endpoint != nil {
+		e1 = *params.endpointParams.Endpoint
+	}
 	if err != nil {
-		return nil, fmt.Errorf("resolve endpoint, Region - %s, endpointParams.Region - %s, endpointParams.Endpoint - %s: %w", params.Region, params.endpointParams.Region, params.endpointParams.Endpoint, err)
+		return nil, fmt.Errorf("resolve endpoint, Region - %s, endpointParams.Region - %s, endpointParams.Endpoint - %s: %w", params.Region, r1, e1, err)
 	}
 
 	endptOpts, ok := smithyauth.GetAuthOptions(&endpt.Properties)
